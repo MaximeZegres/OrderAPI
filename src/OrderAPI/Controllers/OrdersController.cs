@@ -1,5 +1,7 @@
 using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
+using OrderAPI.Data;
+using OrderAPI.Models;
 
 namespace OrderAPI.Controllers
 {
@@ -7,10 +9,31 @@ namespace OrderAPI.Controllers
     [ApiController]
     public class OrdersController : ControllerBase
     {
-        [HttpGet]
-        public ActionResult<IEnumerable<string>> Get()
+        private readonly IOrderAPIRepo _repository;
+
+        public OrdersController(IOrderAPIRepo repository)
         {
-            return new string[] { "test1", "test2", "test3" };
+            _repository = repository;
         }
+
+        [HttpGet]
+        public ActionResult<IEnumerable<Book>> GetAllBooks()
+        {
+            var books = _repository.GetAllBooks();
+            return Ok(books);
+        }
+
+        [HttpGet("{id}")]
+        public ActionResult<Book> GetBookById(int id)
+        {
+            var book = _repository.GetBookById(id);
+            if(book == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(book);
+        }
+
     }
 }

@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace OrderAPI.Models
@@ -14,5 +15,7 @@ namespace OrderAPI.Models
         public decimal TotalAmount { get; set; }
 
         public DateTime OrderDate { get; set; }
+
+        public List<OrderDetail> OrderDetails { get; set; }
     }
 }
