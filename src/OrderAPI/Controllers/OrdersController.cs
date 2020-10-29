@@ -16,24 +16,7 @@ namespace OrderAPI.Controllers
             _repository = repository;
         }
 
-        [HttpGet]
-        public ActionResult<IEnumerable<Book>> GetAllBooks()
-        {
-            var books = _repository.GetAllBooks();
-            return Ok(books);
-        }
 
-        [HttpGet("{id}")]
-        public ActionResult<Book> GetBookById(int id)
-        {
-            var book = _repository.GetBookById(id);
-            if(book == null)
-            {
-                return NotFound();
-            }
-
-            return Ok(book);
-        }
 
     }
 }

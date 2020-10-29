@@ -1,71 +1,31 @@
 using System.Collections.Generic;
+using System.Linq;
 using OrderAPI.Models;
 
 namespace OrderAPI.Data
 {
     public class OrderAPIRepo : IOrderAPIRepo
     {
-        public void CreateBook(Book book)
+        private readonly OrderApiContext _context;
+
+        public OrderAPIRepo(OrderApiContext context)
         {
-            throw new System.NotImplementedException();
+            _context = context;
         }
 
-        public void CreateCustomer(Customer customer)
-        {
-            throw new System.NotImplementedException();
-        }
 
-        public void CreateOrder(Order order)
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public void DeleteBook(Book book)
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public void DeleteCustomer(Customer customer)
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public void DeleteOrder(Order order)
-        {
-            throw new System.NotImplementedException();
-        }
-
+        // Books
         public IEnumerable<Book> GetAllBooks()
         {
-            throw new System.NotImplementedException();
-        }
-
-        public IEnumerable<Customer> GetAllCustomers()
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public IEnumerable<Order> GetAllOrders()
-        {
-            throw new System.NotImplementedException();
+            return _context.Books.ToList();
         }
 
         public Book GetBookById(int id)
         {
-            throw new System.NotImplementedException();
+            return _context.Books.FirstOrDefault(p => p.Id == id);
         }
 
-        public Customer GetCustomerById(int id)
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public Order GetOrderById(int id)
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public bool saveChanges()
+        public void CreateBook(Book book)
         {
             throw new System.NotImplementedException();
         }
@@ -75,7 +35,54 @@ namespace OrderAPI.Data
             throw new System.NotImplementedException();
         }
 
+        public void DeleteBook(Book book)
+        {
+            throw new System.NotImplementedException();
+        }
+
+
+
+
+        // Customers
+        public IEnumerable<Customer> GetAllCustomers()
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public Customer GetCustomerById(int id)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public void CreateCustomer(Customer customer)
+        {
+            throw new System.NotImplementedException();
+        }
+
         public void UpdateCustomer(Customer customer)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public void DeleteCustomer(Customer customer)
+        {
+            throw new System.NotImplementedException();
+        }
+
+
+
+        // Orders
+        public IEnumerable<Order> GetAllOrders()
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public Order GetOrderById(int id)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public void CreateOrder(Order order)
         {
             throw new System.NotImplementedException();
         }
@@ -84,5 +91,19 @@ namespace OrderAPI.Data
         {
             throw new System.NotImplementedException();
         }
+
+        public void DeleteOrder(Order order)
+        {
+            throw new System.NotImplementedException();
+        }
+
+
+
+        // Save change
+        public bool saveChanges()
+        {
+            throw new System.NotImplementedException();
+        }
+
     }
 }
