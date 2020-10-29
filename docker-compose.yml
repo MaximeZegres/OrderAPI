@@ -1,0 +1,12 @@
+version: "3"
+services:
+#  Create a service named db.
+  database:
+    image: postgres:latest
+    container_name: "orderapidb"
+    environment:
+      - POSTGRES_PASSWORD=mysecretpassword
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
