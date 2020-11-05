@@ -1,5 +1,7 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Mvc;
 using OrderAPI.Data;
+using OrderAPI.Dtos;
 using OrderAPI.Models;
 using System;
 using System.Collections.Generic;
@@ -13,17 +15,19 @@ namespace OrderAPI.Controllers
     public class BooksController : ControllerBase
     {
         private readonly IOrderAPIRepo _repository;
+        private readonly IMapper _mapper;
 
-        public BooksController(IOrderAPIRepo repository)
+        public BooksController(IOrderAPIRepo repository, IMapper mapper)
         {
             _repository = repository;
+            _mapper = mapper;
         }
 
         [HttpGet]
         public ActionResult<IEnumerable<Book>> GetAllBooks()
         {
             var books = _repository.GetAllBooks();
-            return Ok(books);
+            return Ok(_mapper.Map<IEnumerable<BookReadDto>>(books));
         }
 
         [HttpGet("{id}")]
@@ -35,7 +39,7 @@ namespace OrderAPI.Controllers
                 return NotFound();
             }
 
-            return Ok(book);
+            return Ok(_mapper.Map<BookReadDto>(book));
         }
     }
 }
