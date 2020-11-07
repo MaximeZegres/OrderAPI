@@ -57,27 +57,37 @@ namespace OrderAPI.Data
         // Customers
         public IEnumerable<Customer> GetAllCustomers()
         {
-            throw new System.NotImplementedException();
+            return _context.Customers.ToList();
         }
 
         public Customer GetCustomerById(int id)
         {
-            throw new System.NotImplementedException();
+            return _context.Customers.FirstOrDefault(p => p.CustomerId == id);
         }
 
         public void CreateCustomer(Customer customer)
         {
-            throw new System.NotImplementedException();
+            if (customer == null)
+            {
+                throw new ArgumentNullException(nameof(customer));
+            }
+
+            _context.Customers.Add(customer);
         }
 
         public void UpdateCustomer(Customer customer)
         {
-            throw new System.NotImplementedException();
+            // Do nothing in repository
         }
 
         public void DeleteCustomer(Customer customer)
         {
-            throw new System.NotImplementedException();
+            if (customer == null)
+            {
+                throw new ArgumentNullException(nameof(customer));
+            }
+
+            _context.Customers.Remove(customer);
         }
 
 
@@ -85,27 +95,37 @@ namespace OrderAPI.Data
         // Orders
         public IEnumerable<Order> GetAllOrders()
         {
-            throw new System.NotImplementedException();
+            return _context.Orders.ToList();
         }
 
         public Order GetOrderById(int id)
         {
-            throw new System.NotImplementedException();
+            return _context.Orders.FirstOrDefault(p => p.OrderId == id);
         }
 
         public void CreateOrder(Order order)
         {
-            throw new System.NotImplementedException();
+            if (order == null)
+            {
+                throw new ArgumentNullException(nameof(order));
+            }
+
+            _context.Orders.Add(order);
         }
 
         public void UpdateOrder(Order order)
         {
-            throw new System.NotImplementedException();
+            // Do nothing in repository
         }
 
         public void DeleteOrder(Order order)
         {
-            throw new System.NotImplementedException();
+            if (order == null)
+            {
+                throw new ArgumentNullException(nameof(order));
+            }
+
+            _context.Orders.Remove(order);
         }
 
 
