@@ -6,7 +6,7 @@ namespace OrderAPI.Data
 {
     public interface IOrderAPIRepo
     {
-        bool saveChanges();
+        bool SaveChanges();
 
 
         // Book methods

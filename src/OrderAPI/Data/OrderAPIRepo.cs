@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using OrderAPI.Models;
@@ -27,17 +28,27 @@ namespace OrderAPI.Data
 
         public void CreateBook(Book book)
         {
-            throw new System.NotImplementedException();
+            if(book == null)
+            {
+                throw new ArgumentNullException(nameof(book));
+            }
+
+            _context.Books.Add(book);
         }
 
         public void UpdateBook(Book book)
         {
-            throw new System.NotImplementedException();
+            // Do nothing in repository
         }
 
         public void DeleteBook(Book book)
         {
-            throw new System.NotImplementedException();
+            if(book == null)
+            {
+                throw new ArgumentNullException(nameof(book));
+            }
+
+            _context.Books.Remove(book);
         }
 
 
@@ -100,9 +111,9 @@ namespace OrderAPI.Data
 
 
         // Save change
-        public bool saveChanges()
+        public bool SaveChanges()
         {
-            throw new System.NotImplementedException();
+            return (_context.SaveChanges() >= 0);
         }
 
     }

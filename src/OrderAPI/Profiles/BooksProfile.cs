@@ -14,6 +14,9 @@ namespace OrderAPI.Profiles
         {
             // Source -> Target
             CreateMap<Book, BookReadDto>();
+            CreateMap<BookCreateDto, Book>();
+            CreateMap<BookUpdateDto, Book>();
+            CreateMap<Book, BookUpdateDto>();
         }
     }
 }
