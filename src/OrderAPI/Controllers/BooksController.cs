@@ -26,14 +26,14 @@ namespace OrderAPI.Controllers
         }
 
         [HttpGet]
-        public ActionResult<IEnumerable<Book>> GetAllBooks()
+        public ActionResult<IEnumerable<BookReadDto>> GetAllBooks()
         {
             var books = _repository.GetAllBooks();
             return Ok(_mapper.Map<IEnumerable<BookReadDto>>(books));
         }
 
         [HttpGet("{id}", Name = "GetBookById")]
-        public ActionResult<Book> GetBookById(int id)
+        public ActionResult<BookReadDto> GetBookById(int id)
         {
             var book = _repository.GetBookById(id);
             if (book == null)
