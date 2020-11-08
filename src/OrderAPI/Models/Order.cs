@@ -12,10 +12,12 @@ namespace OrderAPI.Models
 
         public int FK_CustomerId { get; set; }
 
+        public Customer Customer { get; set; }
+
         public decimal TotalAmount { get; set; }
 
         public DateTime OrderDate { get; set; }
 
-        public List<OrderDetail> OrderDetails { get; set; }
+        public ICollection<OrderDetail> OrderDetails { get; set; }
     }
 }

@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Microsoft.EntityFrameworkCore;
 using OrderAPI.Models;
 
 namespace OrderAPI.Data
@@ -95,7 +96,9 @@ namespace OrderAPI.Data
         // Orders
         public IEnumerable<Order> GetAllOrders()
         {
-            return _context.Orders.ToList();
+            return _context.Orders
+                .Include(a => a.OrderDetails)
+                .ToList();
         }
 
         public Order GetOrderById(int id)

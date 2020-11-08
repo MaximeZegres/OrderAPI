@@ -1,4 +1,6 @@
 using System;
+using System.Collections;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace OrderAPI.Models
@@ -13,5 +15,6 @@ namespace OrderAPI.Models
         public int PhoneNumber { get; set; }
         public string Email { get; set; }
         public decimal Price {get;set;}
+        public virtual ICollection<Order> Orders { get; set; }
     }
 }

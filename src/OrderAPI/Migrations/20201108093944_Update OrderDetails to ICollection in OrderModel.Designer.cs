@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using OrderAPI.Data;
@@ -9,9 +10,10 @@ using OrderAPI.Data;
 namespace OrderAPI.Migrations
 {
     [DbContext(typeof(OrderApiContext))]
-    partial class OrderApiContextModelSnapshot : ModelSnapshot
+    [Migration("20201108093944_Update OrderDetails to ICollection in OrderModel")]
+    partial class UpdateOrderDetailstoICollectioninOrderModel
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -77,9 +79,6 @@ namespace OrderAPI.Migrations
                         .HasColumnType("integer")
                         .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
-                    b.Property<int?>("CustomerId")
-                        .HasColumnType("integer");
-
                     b.Property<int>("FK_CustomerId")
                         .HasColumnType("integer");
 
@@ -91,23 +90,23 @@ namespace OrderAPI.Migrations
 
                     b.HasKey("OrderId");
 
-                    b.HasIndex("CustomerId");
-
                     b.ToTable("Orders");
                 });
 
             modelBuilder.Entity("OrderAPI.Models.OrderDetail", b =>
                 {
-                    b.Property<int>("FK_BookId")
-                        .HasColumnType("integer");
-
-                    b.Property<int>("FK_OrderId")
-                        .HasColumnType("integer");
+                    b.Property<int>("OrderDetailId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer")
+                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
                     b.Property<decimal>("DetailPrice")
                         .HasColumnType("numeric");
 
-                    b.Property<int>("OrderDetailId")
+                    b.Property<int>("FK_BookId")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("FK_OrderId")
                         .HasColumnType("integer");
 
                     b.Property<int?>("OrderId")
@@ -116,18 +115,11 @@ namespace OrderAPI.Migrations
                     b.Property<int>("Quantity")
                         .HasColumnType("integer");
 
-                    b.HasKey("FK_BookId", "FK_OrderId");
+                    b.HasKey("OrderDetailId");
 
                     b.HasIndex("OrderId");
 
                     b.ToTable("OrderDetails");
-                });
-
-            modelBuilder.Entity("OrderAPI.Models.Order", b =>
-                {
-                    b.HasOne("OrderAPI.Models.Customer", "Customer")
-                        .WithMany("Orders")
-                        .HasForeignKey("CustomerId");
                 });
 
             modelBuilder.Entity("OrderAPI.Models.OrderDetail", b =>
