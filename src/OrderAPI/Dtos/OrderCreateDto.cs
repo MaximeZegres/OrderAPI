@@ -6,10 +6,8 @@ using System.Threading.Tasks;
 
 namespace OrderAPI.Dtos
 {
-    public class OrderReadDto
+    public class OrderCreateDto
     {
-        public int OrderId { get; set; }
-
         public int FK_CustomerId { get; set; }
 
         public Customer Customer { get; set; }
@@ -19,6 +17,5 @@ namespace OrderAPI.Dtos
         public DateTime OrderDate { get; set; }
 
         public ICollection<OrderDetail> OrderDetails { get; set; }
-
     }
 }

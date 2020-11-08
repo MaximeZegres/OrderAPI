@@ -96,9 +96,7 @@ namespace OrderAPI.Data
         // Orders
         public IEnumerable<Order> GetAllOrders()
         {
-            return _context.Orders
-                .Include(a => a.OrderDetails)
-                .ToList();
+            return _context.Orders.ToList();
         }
 
         public Order GetOrderById(int id)

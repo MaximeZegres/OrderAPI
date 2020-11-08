@@ -24,7 +24,7 @@ namespace OrderAPI.Controllers
         }
 
         [HttpGet]
-        public ActionResult<IEnumerable<Customer>> GetAllCustomers()
+        public ActionResult<IEnumerable<CustomerReadDto>> GetAllCustomers()
         {
             var customers = _repository.GetAllCustomers();
             return Ok(_mapper.Map<IEnumerable<CustomerReadDto>>(customers));
