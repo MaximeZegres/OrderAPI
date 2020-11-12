@@ -13,9 +13,7 @@ namespace OrderAPI.Profiles
         public CustomersProfile()
         {
             // Customers
-            CreateMap<Customer, CustomerReadDto>()
-                .ForMember(dest => dest.FullName, opt => opt.MapFrom(src => src.FirstName + ' ' + src.LastName));
-
+            CreateMap<Customer, CustomerReadDto>();
             CreateMap<CustomerCreateDto, Customer>();
             CreateMap<CustomerUpdateDto, Customer>();
             CreateMap<Customer, CustomerUpdateDto>();

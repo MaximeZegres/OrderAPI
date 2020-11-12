@@ -1,5 +1,6 @@
 using System;
 using System.ComponentModel.DataAnnotations;
+using System.Net.Http.Headers;
 
 namespace OrderAPI.Models
 {
@@ -9,11 +10,7 @@ namespace OrderAPI.Models
         [Required]
         public int OrderDetailId { get; set; }
 
-        public int FK_OrderId { get; set; }
-
-        public int FK_BookId { get; set; }
-
-        public decimal DetailPrice { get; set; }
+        public Book Book { get; set; }
 
         public int Quantity { get; set; }
     }

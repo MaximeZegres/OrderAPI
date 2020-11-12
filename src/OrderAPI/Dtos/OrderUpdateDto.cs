@@ -1,14 +1,14 @@
+﻿using OrderAPI.Models;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
+using System.Linq;
+using System.Threading.Tasks;
 
-namespace OrderAPI.Models
+namespace OrderAPI.Dtos
 {
-    public class Order
+    public class OrderUpdateDto
     {
-        [Key]
-        [Required]
-        public int OrderId { get; set; }
+        public int FK_CustomerId { get; set; }
 
         public Customer Customer { get; set; }
 

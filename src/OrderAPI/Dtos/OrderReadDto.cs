@@ -10,8 +10,6 @@ namespace OrderAPI.Dtos
     {
         public int OrderId { get; set; }
 
-        public int FK_CustomerId { get; set; }
-
         public Customer Customer { get; set; }
 
         public decimal TotalAmount { get; set; }

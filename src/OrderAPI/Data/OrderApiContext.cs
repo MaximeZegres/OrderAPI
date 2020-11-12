@@ -21,13 +21,8 @@ namespace OrderAPI.Data
         public DbSet<OrderDetail> OrderDetails { get; set; }
 
         // Create mapping in OnModelCreating (DbModelBuilder) between Orders and Customers (and Orders and OrderDetails)
-        protected override void OnModelCreating(ModelBuilder modelBuilder)
-        {
-            modelBuilder.Entity<OrderDetail>().HasKey(s => new { s.FK_BookId, s.FK_OrderId });
-
-            modelBuilder.Entity<Customer>()
-                .HasMany(o => o.Orders)
-                .WithOne(c => c.Customer);
-        }
+        //protected override void OnModelCreating(ModelBuilder modelBuilder)
+        //{
+        //}
     }
 }

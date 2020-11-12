@@ -40,7 +40,7 @@ namespace OrderAPI.Controllers
         }
 
         [HttpPost]
-        public ActionResult<OrderCreateDto> CreateOrder(OrderCreateDto orderCreateDto)
+        public ActionResult<OrderCreateDto> CreateOrder([FromBody]OrderCreateDto orderCreateDto)
         {
 
             var orderModel = _mapper.Map<Order>(orderCreateDto);

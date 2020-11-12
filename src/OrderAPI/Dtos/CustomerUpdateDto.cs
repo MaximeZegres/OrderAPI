@@ -11,6 +11,6 @@ namespace OrderAPI.Dtos
         public string LastName { get; set; }
         public int PhoneNumber { get; set; }
         public string Email { get; set; }
-        public decimal Price { get; set; }
+        public virtual ICollection<Order> Orders { get; set; }
     }
 }

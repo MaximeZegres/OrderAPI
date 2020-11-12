@@ -96,12 +96,16 @@ namespace OrderAPI.Data
         // Orders
         public IEnumerable<Order> GetAllOrders()
         {
-            return _context.Orders.ToList();
+            return _context.Orders
+                .Include(o => o.OrderDetails)
+                .ThenInclude(b => b.Book)
+                .ToList();
         }
 
         public Order GetOrderById(int id)
         {
-            return _context.Orders.FirstOrDefault(p => p.OrderId == id);
+            return _context.Orders.FirstOrDefault(p => p.OrderId == id)
+                ;
         }
 
         public void CreateOrder(Order order)

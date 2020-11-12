@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using OrderAPI.Data;
@@ -9,9 +10,10 @@ using OrderAPI.Data;
 namespace OrderAPI.Migrations
 {
     [DbContext(typeof(OrderApiContext))]
-    partial class OrderApiContextModelSnapshot : ModelSnapshot
+    [Migration("20201112124035_Refactor models")]
+    partial class Refactormodels
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -32,11 +34,11 @@ namespace OrderAPI.Migrations
                     b.Property<string>("ISBN")
                         .HasColumnType("text");
 
+                    b.Property<decimal>("Price")
+                        .HasColumnType("numeric");
+
                     b.Property<string>("Title")
                         .HasColumnType("text");
-
-                    b.Property<decimal>("UnitPrice")
-                        .HasColumnType("numeric");
 
                     b.HasKey("Id");
 
@@ -106,6 +108,9 @@ namespace OrderAPI.Migrations
                     b.Property<int>("Quantity")
                         .HasColumnType("integer");
 
+                    b.Property<decimal>("UnitPrice")
+                        .HasColumnType("numeric");
+
                     b.HasKey("OrderDetailId");
 
                     b.HasIndex("BookId");
@@ -128,7 +133,7 @@ namespace OrderAPI.Migrations
                         .WithMany()
                         .HasForeignKey("BookId");
 
-                    b.HasOne("OrderAPI.Models.Order", null)
+                    b.HasOne("OrderAPI.Models.Order", "Order")
                         .WithMany("OrderDetails")
                         .HasForeignKey("OrderId");
                 });
